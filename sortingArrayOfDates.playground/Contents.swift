@@ -24,7 +24,7 @@ func sortingArray(dateArray: [Date], daysBefore: Int = 0) -> [Date] {
             return month1 < month2
         }
     }
-    let firstArray = sortedDateArray.filter {
+    let arrayBeforeCurrentDate = sortedDateArray.filter {
         let month = Calendar.current.component(.month, from: $0)
         if month == nowMonth {
             let day = Calendar.current.component(.day, from: $0)
@@ -33,7 +33,7 @@ func sortingArray(dateArray: [Date], daysBefore: Int = 0) -> [Date] {
             return nowMonth < month
         }
     }
-    let secondArray = sortedDateArray.filter {
+    let arrayAfterCurrentDate = sortedDateArray.filter {
         let month = Calendar.current.component(.month, from: $0)
         if month == nowMonth {
             let day = Calendar.current.component(.day, from: $0)
@@ -42,7 +42,7 @@ func sortingArray(dateArray: [Date], daysBefore: Int = 0) -> [Date] {
             return nowMonth > month
         }
     }
-    let sortedArray = firstArray + secondArray
+    let sortedArray = arrayBeforeCurrentDate + arrayAfterCurrentDate
     return sortedArray
 }
 
